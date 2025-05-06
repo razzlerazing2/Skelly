@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/media/favicon/khan.png" type="image/x-icon" />
+  <title>Dashboard | Khan Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/holy.css">
+</head>
+    <nav class="top-nav">
+      <div class="logo"><a href="/home">SKG</a></div>
+      <ul>
+        <li><a href="/games">Games</a></li>
+        <li><a href="/apps">Apps</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact Info</a></li>
+      </ul>
+    </nav>
+<!-- Content Section -->
+<div class="content">
+  <div class="container">
+    <h1>404 Error</h1>
+    <h2>You have done something to encounter the very requirment of this page to load, because whatever u typed in don't
+      work</h2>
+    <div class="proxy-buttons-container" id="proxy-buttons-container">
+      <a href="/home" class="proxy-button">Home Page</a>
+    </div>
+
+    <script>
+            
+              function showLoader() {
+                setTimeout(() => {
+                  document.getElementById("loader").style.display = "none";
+                }, 1000);
+              }
+
+              // Update the time every 10ms
+              function updateTime() {
+                const timeElement = document.getElementById("time");
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, "0");
+                const minutes = String(now.getMinutes()).padStart(2, "0");
+                const seconds = String(now.getSeconds()).padStart(2, "0");
+                const milliseconds = String(now.getMilliseconds()).padStart(3, "0");
+                timeElement.textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+              }
+
+              setInterval(updateTime, 10);
+
+              // Update battery status
+              async function updateBattery() {
+                const battery = await navigator.getBattery();
+                const level = Math.floor(battery.level * 100);
+                document.getElementById("battery-percentage").textContent = `${level}%`;
+                document.getElementById("battery-fill").style.width = `${level}%`;
+              }
+
+              updateBattery();
+
+          </script>
+    </body>
+
+</html>
