@@ -119,29 +119,52 @@ input {
    margin-top: 10px;
 }
 
-.key-button {
-   font-family: 'Press Start 2P', cursive;
-   cursor: pointer;
-   border: 2px;
-   font-size: 20px;
-   transition: 0.2s;
-   margin-top: 10px;
 
+.key-button {
+  position: relative;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-size: 14px;
-  outline: none;
-  appearance: none;          /* Removes default styling */
-  -webkit-appearance: none;  /* Safari */
-  -moz-appearance: none; 
-   padding: 0.5rem;
-   border-radius: 10px;
-   height: 50px;
-   width: 50%;
-   padding: 10px;
-   text-align: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  width: 50%;
+}
+.key-button:hover {
+  transform: translateY(-20%) scale(1.1);
+  transition: 0.3s ease;
+}
+.key-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: rainbow 5s linear infinite;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
+.key-button:hover::before {
+  opacity: 1;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
 button {
    font-family: 'Press Start 2P', cursive;
    cursor: pointer;
@@ -157,21 +180,86 @@ button {
    padding: 10px;
    text-align: center;
 }
+button:hover {
+  transform: translateY(-20%) scale(1.1);
+  transition: 0.3s ease;
+}
+button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: rainbow 5s linear infinite;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
 select {
   font-family: 'Press Start 2P', cursive;
-  padding: 15px;
-  width: 100%;
-  border-radius: 10px;
+  position: relative;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-size: 14px;
-  outline: none;
-  appearance: none;          /* Removes default styling */
-  -webkit-appearance: none;  /* Safari */
-  -moz-appearance: none;  
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
   text-align: center;
-  transition: 0.3s ease;   /* Firefox */
+  width: 100%;
+  font-size: 14px;
+}
+
+.select-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: rainbow 5s linear infinite;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.select-wrapper:hover::before {
+  opacity: 1;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 #buttonLayer {
    width: 400px;
