@@ -36,11 +36,6 @@ body {
    border: 2px solid white;
 }
 
-.settings-card:hover {
-   transform: translatey(-20px);
-   box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.75);
-   background: rgba(0, 0, 0, 0.2)
-}
 
 .settings-card h3 {
    margin-top: 0;
@@ -131,9 +126,9 @@ input {
    font-size: 20px;
    transition: 0.2s;
    margin-top: 10px;
-     border: 2px solid orange; /* Use full border, not border-color alone */
-  background-color: transparent;
-  color: green;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
   font-size: 14px;
   outline: none;
   appearance: none;          /* Removes default styling */
@@ -146,9 +141,7 @@ input {
    padding: 10px;
    text-align: center;
 }
-.key-button:hover {
-   transform: scale(1.1)
-}
+
 button {
    font-family: 'Press Start 2P', cursive;
    cursor: pointer;
@@ -170,9 +163,8 @@ select {
   padding: 15px;
   width: 100%;
   border-radius: 10px;
-  border: 2px solid orange; /* Use full border, not border-color alone */
-  background-color: transparent;
-  color: green;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
   font-size: 14px;
   outline: none;
   appearance: none;          /* Removes default styling */
@@ -180,10 +172,6 @@ select {
   -moz-appearance: none;  
   text-align: center;
   transition: 0.3s ease;   /* Firefox */
-}
-select:hover {
-     transition: 0.3s ease;
-   transform: scale(1.1)
 }
 #buttonLayer {
    width: 400px;

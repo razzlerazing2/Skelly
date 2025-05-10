@@ -114,7 +114,7 @@ border-radius: 20px;
   z-index: 9999;
   color: white;
   background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black */
-transition: all 3s ease;
+transition: all 1s ease;
 }
 #loader h1 {
   font-size: 85px;
@@ -159,32 +159,47 @@ transition: all 3s ease;
 }
 
 .proxy-button {
-  padding: 10px 20px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.6);
-  color: lightgrey;
+  position: relative;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-shadow: 0 0 3px #fff;
-  font-weight: bold;
-  outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-    border: 2px solid white;
-    text-decoration: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.proxy-button:hover {
+  transform: translateY(-20%) scale(1.1);
+  transition: 0.3s ease;
+}
+.proxy-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: rainbow 5s linear infinite;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.proxy-button:hover {
-      border: none;
-  transform: translateY(-10px);
-    transition: 0.3s;
+.proxy-button:hover::before {
+  opacity: 1;
 }
-.proxy-button:focus {
-  border: none;
-  transform: scale(1.1);
-    transition: 0.3s;
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 /* Sidebar styling */
 
@@ -242,7 +257,6 @@ transition: all 3s ease;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease;
 }
-
 /* Push content down so it's not hidden under fixed nav */
 
 .content {

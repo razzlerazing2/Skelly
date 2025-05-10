@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", event => {
     newIframe.sandbox =
       "allow-same-origin allow-scripts allow-forms allow-pointer-lock allow-modals allow-orientation-lock allow-presentation allow-storage-access-by-user-activation";
     // When Top Navigation is not allowed links with the "top" value will be entirely blocked, if we allow Top Navigation it will overwrite the tab, which is obviously not wanted.
-    tabTitle.textContent = `New Tab ${tabCounter}`;
+    tabTitle.textContent = `Skelly tab ${tabCounter}`;
     tabTitle.className = "t";
     newTab.dataset.tabId = tabCounter;
     newTab.addEventListener("click", switchTab);
@@ -78,23 +78,9 @@ document.addEventListener("DOMContentLoaded", event => {
     newTab.classList.add("active");
     newIframe.dataset.tabId = tabCounter;
     newIframe.classList.add("active");
-    newIframe.addEventListener("load", () => {
-      const title = newIframe.contentDocument.title;
-      if (title.length <= 1) {
-        tabTitle.textContent = "Tab";
-      } else {
-        tabTitle.textContent = title;
-      }
-      newIframe.contentWindow.open = url => {
-        sessionStorage.setItem("URL", `/a/${__uv$config.encodeUrl(url)}`);
-        createNewTab();
-        return null;
-      };
-      if (newIframe.contentDocument.documentElement.outerHTML.trim().length > 0) {
-        Load();
-      }
-      Load();
-    });
+newIframe.addEventListener("load", () => {
+});
+
     const goUrl = sessionStorage.getItem("GoUrl");
     const url = sessionStorage.getItem("URL");
 
@@ -226,10 +212,10 @@ function popout() {
   if (activeIframe) {
     const newWindow = window.open("about:blank", "_blank");
     if (newWindow) {
-      const name = localStorage.getItem("name") || "My Drive - Google Drive";
+      const name = localStorage.getItem("name") || "Dashboard | Khan Academy";
       const icon =
         localStorage.getItem("icon") ||
-        "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+        "/assets/media/favicon/khan.png";
       newWindow.document.title = name;
       const link = newWindow.document.createElement("link");
       link.rel = "icon";
@@ -305,8 +291,9 @@ const fullscreenButton = document.getElementById("fullscreen-button");
 fullscreenButton.addEventListener("click", FS);
 // Home
 function Home() {
-  window.location.href = "./";
+  window.location.href = "/home";
 }
+
 const homeButton = document.getElementById("home-page");
 homeButton.addEventListener("click", Home);
 // Back

@@ -1,6 +1,6 @@
 let appInd;
-const g = window.location.pathname === "/apps";
-const a = window.location.pathname === "/games";
+const g = window.location.pathname === "/games";
+const a = window.location.pathname === "/apps";
 const c = window.location.pathname === "/gawd.html";
 
 let t;
