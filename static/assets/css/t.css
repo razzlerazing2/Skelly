@@ -9,36 +9,11 @@ body {
    overflow-x: hidden;
    overflow-y: hidden;
    color: var(--text-primary);
-        animation: gradientAnimation 5s linear infinite;
+   background-image: url("/assets/media/background/icegif-96.gif");
 }
 
 
-@keyframes gradientAnimation {
-  0% {
-    background: linear-gradient(45deg, green, red, black);
-  }
-  12.5% {
-    background: linear-gradient(45deg, yellow, orange, red);
-  }
-  25% {
-    background: linear-gradient(45deg, black, red, green);
-  }
-  50% {
-    background: linear-gradient(45deg, yellow, blue, violet);
-  }
-  62.5% {
-    background: linear-gradient(45deg, green, black, indigo);
-  }
-  75% {
-    background: linear-gradient(45deg, red, orange, blue);
-  }
-  87.5% {
-    background: linear-gradient(45deg, red, indigo, gray);
-  }
-  100% {
-    background: linear-gradient(45deg, green, black, red);
-  }
-}
+
 
 .nav {
    padding: 1rem;
@@ -75,9 +50,7 @@ body {
    z-index: 100;
    width: 100vw;
    position: fixed;
-   background: linear-gradient(45deg, green, red, black);
-   background-size: 400% 400%;
-   animation: gradientAnimation 5s linear infinite;
+   background-color: rgba(0, 0, 0, 0.6)
 }
 
 
