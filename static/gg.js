@@ -42,24 +42,35 @@ function updateTime() {
 setInterval(updateTime, 10);
 
 // Update battery status
-async function updateBattery() {
+async function updateBattery() { 
   const battery = await navigator.getBattery();
   const level = Math.floor(battery.level * 100);
   const fill = document.getElementById("battery-fill");
 
   document.getElementById("battery-percentage").textContent = `${level}%`;
   fill.style.width = `${level}%`;
+  
 
-  // Set color based on battery level
-  if (level < 20) {
-    fill.style.backgroundColor = "red";
-  } else if (level < 50) {
-    fill.style.backgroundColor = "yellow";
+  // Set color based on charging state and level
+  if (battery.charging) {
+    fill.style.backgroundColor = "green"; // Charging = green
+  } else if (level > 50) {
+    fill.style.backgroundColor = "white"; // >50% = white
+  } else if (level >= 20) {
+    fill.style.backgroundColor = "yellow"; // 20–50% = yellow
   } else {
-    fill.style.backgroundColor = "green";
+    fill.style.backgroundColor = "red"; // <20% = red
   }
 }
+navigator.getBattery().then(battery => {
+  function updateAll() {
+    updateBattery(); // your custom update logic
+  }
 
+  battery.addEventListener("levelchange", updateAll);
+  battery.addEventListener("chargingchange", updateAll);
+  updateAll(); // initial update
+});
 updateBattery();
 
 // Toggle sidebar visibility and blur effect
