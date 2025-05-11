@@ -536,3 +536,68 @@ select {
     background-position: 100% 50%;
   }
 }
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+select {
+  font-family: 'Press Start 2P', cursive;
+  position: relative;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.select-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: rainbow 5s linear infinite;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.select-wrapper:hover::before {
+  opacity: 1;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+.settings-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+   padding: 20% 20px 20px 20px;
+}
+.settings-card {
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 10px;
+   padding: 20px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   width: 280px;
+   transition: all 0.3s ease;
+   border: 2px solid white;
+}
