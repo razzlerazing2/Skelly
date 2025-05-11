@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
 }
 
 .container {
-  max-width: 800px;
+  width: 860px;
   margin: 150px auto 0 auto;
   padding: 20px; 
 border-radius: 20px;
@@ -597,7 +597,7 @@ select {
    border-radius: 10px;
    padding: 20px;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   width: 280px;
+   width: 850px;
    transition: all 0.3s ease;
    border: 2px solid white;
 }
