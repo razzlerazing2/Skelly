@@ -1,3 +1,18 @@
+
+.container2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
+  z-index: 1; /* Put it behind your main content if needed */
+}
 .column img {
    width: 145px;
    height: 155px;

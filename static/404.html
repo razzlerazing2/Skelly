@@ -8,6 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/holy.css">
 </head>
+<body onload="showLoader()">
+    <!-- Loader -->
+    <div id="loader">
+        <h1><span class="highlight">SKELLY</span>💀</h1>
+        <p><span class="highlight2">Hanging Extension, please wait...</span></p>
+        <div class="loader"></div>
+    </div>
   <nav class="top-nav">
     <div class="logo"><a href="/home">SKG</a></div>
     <ul>
@@ -21,44 +28,121 @@
   </nav>
 <!-- Content Section -->
 <div class="content">
+  <div class="container2">
   <div class="container">
     <h1><span class="highlight">404 Error</span></h1>
     <h2><span class="highlight">File not found / Proxy Error</span></h2>
     <p><span class="highlight2">This error encountered due to you opening external proxy web links, or typing in a file that has not been created.</span></p>
-    <div class="proxy-buttons-container" id="proxy-buttons-container">
-      <a href="/home" class="proxy-button">Home Page</a>
+    <div class="time" id="time">Loading time wait...</div>
+      <div class="battery" id="battery">
+        <div class="battery-icon">
+          <div class="battery-fill" id="battery-fill"></div>
+        </div><span id="battery-percentage">Loading battery wait...</span>
+      </div>
+      <div class="settings-card">
+              <div class="select-wrapper">
+        <div class="proxy-buttons-container" id="proxy-buttons-container">
+      <a href="/games" class="proxy-button">Games</a>
+      <a href="/apps" class="proxy-button">Apps</a>
+      <a href="/search" class="proxy-button">Proxy Search</a>
+      <a href="/about" class="proxy-button">About</a>
+      <a href="/settings" class="proxy-button">Settings</a>
+      <a href="/contact" class="proxy-button">Contact Us</a>
+      <button onclick="AB()" class="key-button">Open A:B Cloak</button>
+        </div>
+        </div>
+      </div>
     </div>
-
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+ </div>
+</div>
+</div>
+</div>
+    </div>
+  </div>
     <script>
-            
-              function showLoader() {
-                setTimeout(() => {
-                  document.getElementById("loader").style.display = "none";
-                }, 1000);
-              }
+function showLoader() {
+  const loader = document.getElementById("loader");
+  
+  // Start fading it out
+  loader.style.opacity = "0";
 
-              // Update the time every 10ms
-              function updateTime() {
-                const timeElement = document.getElementById("time");
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, "0");
-                const minutes = String(now.getMinutes()).padStart(2, "0");
-                const seconds = String(now.getSeconds()).padStart(2, "0");
-                const milliseconds = String(now.getMilliseconds()).padStart(3, "0");
-                timeElement.textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
-              }
+  // After the transition ends (0.3s later), hide it completely
+  setTimeout(() => {
+    loader.style.display = "none";
+  }, 1000); // 300ms matches your CSS transition
+}
 
-              setInterval(updateTime, 10);
+// Update the time every 10ms
+function updateTime() {
+  const timeElement = document.getElementById("time");
+  const now = new Date();
 
-              // Update battery status
-              async function updateBattery() {
-                const battery = await navigator.getBattery();
-                const level = Math.floor(battery.level * 100);
-                document.getElementById("battery-percentage").textContent = `${level}%`;
-                document.getElementById("battery-fill").style.width = `${level}%`;
-              }
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
 
-              updateBattery();
+  // Convert to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 becomes 12
+
+  timeElement.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+setInterval(updateTime, 10);
+
+// Update battery status
+async function updateBattery() { 
+  const battery = await navigator.getBattery();
+  const level = Math.floor(battery.level * 100);
+  const fill = document.getElementById("battery-fill");
+
+  document.getElementById("battery-percentage").textContent = `${level}%`;
+  fill.style.width = `${level}%`;
+  
+
+  // Set color based on charging state and level
+  if (battery.charging) {
+    fill.style.backgroundColor = "green"; // Charging = green
+  } else if (level > 50) {
+    fill.style.backgroundColor = "white"; // >50% = white
+  } else if (level >= 20) {
+    fill.style.backgroundColor = "yellow"; // 20–50% = yellow
+  } else {
+    fill.style.backgroundColor = "red"; // <20% = red
+  }
+}
+navigator.getBattery().then(battery => {
+  function updateAll() {
+    updateBattery(); // your custom update logic
+  }
+
+  battery.addEventListener("levelchange", updateAll);
+  battery.addEventListener("chargingchange", updateAll);
+  updateAll(); // initial update
+});
+updateBattery();
+// Toggle sidebar visibility and blur effect
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const hamburger = document.querySelector(".hamburger");
+      const content = document.querySelector(".content"); // Select the content section
+
+      sidebar.classList.toggle("closed");
+      hamburger.classList.toggle("open");
+
+      // Toggle blur on content when sidebar is open
+      content.classList.toggle("blur", !sidebar.classList.contains("closed"));
+    }
 
           </script>
     </body>
