@@ -135,12 +135,6 @@
     "categories": ["all", "ai"]
   },
   {
-    "name": "Snapchat",
-    "image": "/assets/media/icons/snap.webp",
-    "categories": ["all", "social", "message"],
-    "error": "true"
-  },
-  {
     "name": "SpaceHey",
     "link": "https://www.spacehey.com",
     "image": "/assets/media/icons/spacehey.png",
@@ -230,15 +224,9 @@
   },
   {
     "name": "Blooket Cheats",
-    "link": "https://github.com/005konz/Blooket-Cheats",
+    "link": "https://githubman6996.github.io/05konz-blooket-site/",
     "image": "/assets/media/icons/bl.webp",
     "categories": ["all", "bl", "cs"]
-  },
-  {
-    "name": "Edpuzzle Cheats",
-    "link": "https://github.com/ading2210/edpuzzle-answers",
-    "image": "/assets/media/icons/ep.png",
-    "categories": ["all", "ep", "cs"]
   },
   {
     "name": "DeepAI.org",
@@ -250,11 +238,6 @@
     "name": "Fmovies",
     "link": "https://new-fmovies.net",
     "image": "/assets/media/FM.png",
-    "categories": ["all", "ai"]
-  },
-  {
-    "name": "FreedomGPT",
-    "link": "https://chat.freedomgpt.com/",
     "categories": ["all", "ai"]
   },
   {
