@@ -214,3 +214,7 @@ p {
 input::placeholder {
   color: gray;
 }
+h1 {
+  font-size: 23px;
+  margin-bottom: 20px; /* Adds space below h1 */
+}
