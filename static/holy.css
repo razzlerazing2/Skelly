@@ -6,7 +6,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow-y: scroll; /* Enable scrolling */
+  overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   display: flex;
@@ -15,9 +15,17 @@ body {
   justify-content: center;
   color: white;
   position: relative;
-  background-size: cover;
   text-align: center;
-  background: url("/assets/media/background/icegif-96.gif");
+
+  /* Background */
+  background: url("/assets/media/background/icegif-96.gif") no-repeat center center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  display: none;
 }
  
 /* Hide scrollbars in WebKit browsers (Chrome, Safari, Opera) */
