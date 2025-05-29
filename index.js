@@ -148,3 +148,4 @@ server.on("listening", () => {
   console.log(chalk.white("✅ Server is fully operational and ready to accept connections!"));
   console.log(chalk.red("Removed pnpm-lock.yaml because of some deploying issues"));
 server.listen({ port: PORT });
+// @razzlerazing2 was here >:) SO IF U R HERE THEN LEAVE (jk CUH) so u got rizz or soda fizz

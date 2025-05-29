@@ -1,9 +1,11 @@
 const config = {
-  challenge: false, // Set to true if you want to enable password protection.
+  challenge: false,
   users: {
-    // You can add multiple users by doing username: 'password'.
     interstellar: "password",
   },
 };
 
 export default config;
+// What are you doing here if you are here u are 🏳️‍🌈
+// jk u are not THAT but still use npm start and then npm start
+// share this w/ ur friends :D
