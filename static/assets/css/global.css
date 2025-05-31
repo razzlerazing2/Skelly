@@ -51,9 +51,6 @@ body {
     font-family: 'Press Start 2P', cursive;
    text-decoration: none;
    height: 100%;
-    background: url("/assets/media/background/ezgif-1344c8f3a5f8be.gif") no-repeat center center;
-  background-size: cover;
-  background-position: center;
    /* animation: gradientAnimation 5s linear infinite; */
 }
 

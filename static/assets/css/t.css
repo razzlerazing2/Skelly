@@ -9,9 +9,6 @@ body {
    overflow-x: hidden;
    overflow-y: hidden;
    color: var(--text-primary);
-     background: url("/assets/media/background/ezgif-1344c8f3a5f8be.gif") no-repeat center center;
-  background-size: cover;
-  background-position: center;
 }
 .nav {
    padding: 1rem;
