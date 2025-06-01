@@ -29,16 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
       adTypeElement.value = "default";
     }
   }
+
   // Makes the custom icon and name persistent
   const iconElement = document.getElementById("icon");
   const nameElement = document.getElementById("name");
-  const customIcon = localStorage.getItem("CustomIcon");
-  const customName = localStorage.getItem("CustomName");
-  iconElement.value = customIcon;
-  nameElement.value = customName;
+  
+  if (iconElement && nameElement) {
+    const customIcon = localStorage.getItem("CustomIcon");
+    const customName = localStorage.getItem("CustomName");
+    if (customIcon) iconElement.value = customIcon;
+    if (customName) nameElement.value = customName;
+  }
 
   if (localStorage.getItem("ab") === "true") {
-    document.getElementById("ab-settings-switch").checked = true;
+    const abSwitch = document.getElementById("ab-settings-switch");
+    if (abSwitch) {
+      abSwitch.checked = true;
+    }
   }
 });
 
@@ -82,8 +89,22 @@ let eventKeyRaw = localStorage.getItem("eventKeyRaw") || "`";
 let pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("eventKeyInput").value = eventKeyRaw;
-  document.getElementById("linkInput").value = pLink;
+  const eventKeyInput = document.getElementById("eventKeyInput");
+  const linkInput = document.getElementById("linkInput");
+  
+  if (eventKeyInput) {
+    eventKeyInput.value = eventKeyRaw;
+    eventKeyInput.addEventListener("input", () => {
+      eventKey = eventKeyInput.value.split(",");
+    });
+  }
+  
+  if (linkInput) {
+    linkInput.value = pLink;
+    linkInput.addEventListener("input", () => {
+      pLink = linkInput.value;
+    });
+  }
 
   const selectedOption = localStorage.getItem("selectedOption");
   if (selectedOption) {
@@ -91,25 +112,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const eventKeyInput = document.getElementById("eventKeyInput");
-eventKeyInput.addEventListener("input", () => {
-  eventKey = eventKeyInput.value.split(",");
-});
-
-const linkInput = document.getElementById("linkInput");
-linkInput.addEventListener("input", () => {
-  pLink = linkInput.value;
-});
-
 function saveEventKey() {
+  const eventKeyInput = document.getElementById("eventKeyInput");
+  if (!eventKeyInput) return;
+  
   eventKey = eventKeyInput.value.split(",");
   eventKeyRaw = eventKeyInput.value;
   localStorage.setItem("eventKey", JSON.stringify(eventKey));
   localStorage.setItem("pLink", pLink);
   localStorage.setItem("eventKeyRaw", eventKeyRaw);
-  // biome-ignore lint/correctness/noSelfAssign:
   window.location = window.location;
 }
+
 const dropdown = document.getElementById("dropdown");
 const options = dropdown.getElementsByTagName("option");
 
@@ -152,6 +166,7 @@ function CustomName() {
   console.log("saveName function called with name value:", nameValue);
   localStorage.setItem("CustomName", nameValue);
 }
+
 function ResetCustomCloak() {
   localStorage.removeItem("CustomName");
   localStorage.removeItem("CustomIcon");
@@ -206,6 +221,7 @@ function updateHeadSection(selectedValue) {
     localStorage.setItem("icon", customIcon);
   }
 }
+
 // Custom Background
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
@@ -248,6 +264,7 @@ switches.addEventListener("change", event => {
     window.localStorage.setItem("particles", "false");
   }
 });
+
 // AB Cloak
 function AB() {
   let inFrame;
@@ -311,6 +328,7 @@ function toggleAB() {
     localStorage.setItem("ab", "true");
   }
 }
+
 // Search Engine
 function EngineChange(dropdown) {
   const selectedEngine = dropdown.value;
@@ -438,4 +456,3 @@ function importSaveData() {
   };
   input.click();
 }
-

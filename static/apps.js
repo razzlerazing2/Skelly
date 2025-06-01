@@ -1,4 +1,4 @@
-let qp;
+var qp;
 
 try {
   qp = window.top.location.pathname === "/apps";
