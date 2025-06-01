@@ -110,6 +110,22 @@ document.addEventListener("DOMContentLoaded", () => {
   if (selectedOption) {
     updateHeadSection(selectedOption);
   }
+
+  // Move dropdown sorting inside DOMContentLoaded and add null check
+  const dropdown = document.getElementById("dropdown");
+  if (dropdown) {
+    const options = Array.from(dropdown.getElementsByTagName("option")).sort((a, b) =>
+      a.textContent.localeCompare(b.textContent)
+    );
+
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+
+    for (const option of options) {
+      dropdown.appendChild(option);
+    }
+  }
 });
 
 function saveEventKey() {
@@ -122,21 +138,6 @@ function saveEventKey() {
   localStorage.setItem("pLink", pLink);
   localStorage.setItem("eventKeyRaw", eventKeyRaw);
   window.location = window.location;
-}
-
-const dropdown = document.getElementById("dropdown");
-const options = dropdown.getElementsByTagName("option");
-
-const sortedOptions = Array.from(options).sort((a, b) =>
-  a.textContent.localeCompare(b.textContent),
-);
-
-while (dropdown.firstChild) {
-  dropdown.removeChild(dropdown.firstChild);
-}
-
-for (const option of sortedOptions) {
-  dropdown.appendChild(option);
 }
 
 function saveIcon() {
@@ -195,7 +196,10 @@ document.addEventListener("DOMContentLoaded", event => {
   const icon = document.getElementById("tab-favicon");
   const name = document.getElementById("t");
   const selectedValue = localStorage.getItem("selectedOption") || "Default";
-  document.getElementById("dropdown").value = selectedValue;
+  const dropdownElement = document.getElementById("dropdown");
+  if (dropdownElement) {
+    dropdownElement.value = selectedValue;
+  }
   updateHeadSection(selectedValue);
 });
 
@@ -228,40 +232,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const backgroundInput = document.getElementById("background-input");
   const resetButton = document.getElementById("reset-button");
 
-  saveButton.addEventListener("click", () => {
-    const imageURL = backgroundInput.value;
-    if (imageURL.trim() !== "") {
-      localStorage.setItem("backgroundImage", imageURL);
-      document.body.style.backgroundImage = `url('${imageURL}')`;
-      backgroundInput.value = "";
-    } else {
-      console.log("No image URL entered.");
-    }
-  });
+  if (saveButton && backgroundInput && resetButton) {
+    saveButton.addEventListener("click", () => {
+      const imageURL = backgroundInput.value;
+      if (imageURL.trim() !== "") {
+        localStorage.setItem("backgroundImage", imageURL);
+        document.body.style.backgroundImage = `url('${imageURL}')`;
+        backgroundInput.value = "";
+      } else {
+        console.log("No image URL entered.");
+      }
+    });
 
-  resetButton.addEventListener("click", () => {
-    localStorage.removeItem("backgroundImage");
-    document.body.style.backgroundImage = "url('default-background.jpg')";
-    window.location.reload();
-  });
+    resetButton.addEventListener("click", () => {
+      localStorage.removeItem("backgroundImage");
+      document.body.style.backgroundImage = "url('default-background.jpg')";
+      window.location.reload();
+    });
+  }
 });
 
 // Particles
-const switches = document.getElementById("2");
+document.addEventListener("DOMContentLoaded", () => {
+  const switches = document.getElementById("2");
+  if (switches) {
+    if (window.localStorage.getItem("particles") !== "") {
+      if (window.localStorage.getItem("particles") === "true") {
+        switches.checked = true;
+      } else {
+        switches.checked = false;
+      }
+    }
 
-if (window.localStorage.getItem("particles") !== "") {
-  if (window.localStorage.getItem("particles") === "true") {
-    switches.checked = true;
-  } else {
-    switches.checked = false;
-  }
-}
-
-switches.addEventListener("change", event => {
-  if (event.currentTarget.checked) {
-    window.localStorage.setItem("particles", "true");
-  } else {
-    window.localStorage.setItem("particles", "false");
+    switches.addEventListener("change", event => {
+      if (event.currentTarget.checked) {
+        window.localStorage.setItem("particles", "true");
+      } else {
+        window.localStorage.setItem("particles", "false");
+      }
+    });
   }
 });
 
@@ -350,9 +359,9 @@ function EngineChange(dropdown) {
 }
 
 function SaveEngine() {
-  const customEngine = document.getElementById("engine-form").value;
-  if (customEngine.trim() !== "") {
-    localStorage.setItem("engine", customEngine);
+  const customEngine = document.getElementById("engine-form");
+  if (customEngine && customEngine.value.trim() !== "") {
+    localStorage.setItem("engine", customEngine.value);
     localStorage.setItem("enginename", "Custom");
   } else {
     alert("Please enter a custom search engine value.");
@@ -362,7 +371,7 @@ function SaveEngine() {
 document.addEventListener("DOMContentLoaded", () => {
   const selectedEngineName = localStorage.getItem("enginename");
   const dropdown = document.getElementById("engine");
-  if (selectedEngineName) {
+  if (dropdown && selectedEngineName) {
     dropdown.value = selectedEngineName;
   }
 });
