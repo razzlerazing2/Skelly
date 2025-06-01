@@ -1,4 +1,4 @@
-(function() {
+
   var qp;
 
   try {
@@ -72,4 +72,3 @@
     updateAll(); // initial update
   });
   updateBattery();
-})();

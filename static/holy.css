@@ -18,7 +18,7 @@ body {
   text-align: center;
 
   /* Background */
-  background: url("/assets/media/background/rizzyaf.gif") no-repeat center center;
+  background: url("/assets/media/background/cuhgotnorizz2.gif") no-repeat center center;
   background-size: cover;
   background-position: center;
 }
@@ -59,13 +59,13 @@ body::-webkit-scrollbar {
   position: relative;
   border: 2px solid white;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px); /* I'm pretty sure adds a thing called "glassy" effect. */
+  backdrop-filter: blur(10px); /* I'm pretty sure adds a thing called "glassy" effect. */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto;
 }
 
 .container:hover {
-   backdrop-filter: blur(10px);
+   backdrop-filter: blur(20px);
   border: 2px solid transparent;
   box-shadow: 
     0 0 60px 20px #FF0000,

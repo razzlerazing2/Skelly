@@ -1,4 +1,4 @@
-(function() {
+
   let qp;
 
   try {
@@ -87,4 +87,3 @@
 
   // Make toggleSidebar available globally
   window.toggleSidebar = toggleSidebar;
-})();
