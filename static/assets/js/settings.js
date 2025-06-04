@@ -29,16 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
       adTypeElement.value = "default";
     }
   }
+
   // Makes the custom icon and name persistent
   const iconElement = document.getElementById("icon");
   const nameElement = document.getElementById("name");
-  const customIcon = localStorage.getItem("CustomIcon");
-  const customName = localStorage.getItem("CustomName");
-  iconElement.value = customIcon;
-  nameElement.value = customName;
+  
+  if (iconElement && nameElement) {
+    const customIcon = localStorage.getItem("CustomIcon");
+    const customName = localStorage.getItem("CustomName");
+    if (customIcon) iconElement.value = customIcon;
+    if (customName) nameElement.value = customName;
+  }
 
   if (localStorage.getItem("ab") === "true") {
-    document.getElementById("ab-settings-switch").checked = true;
+    const abSwitch = document.getElementById("ab-settings-switch");
+    if (abSwitch) {
+      abSwitch.checked = true;
+    }
   }
 });
 
@@ -82,47 +89,55 @@ let eventKeyRaw = localStorage.getItem("eventKeyRaw") || "`";
 let pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("eventKeyInput").value = eventKeyRaw;
-  document.getElementById("linkInput").value = pLink;
+  const eventKeyInput = document.getElementById("eventKeyInput");
+  const linkInput = document.getElementById("linkInput");
+  
+  if (eventKeyInput) {
+    eventKeyInput.value = eventKeyRaw;
+    eventKeyInput.addEventListener("input", () => {
+      eventKey = eventKeyInput.value.split(",");
+    });
+  }
+  
+  if (linkInput) {
+    linkInput.value = pLink;
+    linkInput.addEventListener("input", () => {
+      pLink = linkInput.value;
+    });
+  }
 
   const selectedOption = localStorage.getItem("selectedOption");
   if (selectedOption) {
     updateHeadSection(selectedOption);
   }
-});
 
-const eventKeyInput = document.getElementById("eventKeyInput");
-eventKeyInput.addEventListener("input", () => {
-  eventKey = eventKeyInput.value.split(",");
-});
+  // Move dropdown sorting inside DOMContentLoaded and add null check
+  const dropdown = document.getElementById("dropdown");
+  if (dropdown) {
+    const options = Array.from(dropdown.getElementsByTagName("option")).sort((a, b) =>
+      a.textContent.localeCompare(b.textContent)
+    );
 
-const linkInput = document.getElementById("linkInput");
-linkInput.addEventListener("input", () => {
-  pLink = linkInput.value;
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+
+    for (const option of options) {
+      dropdown.appendChild(option);
+    }
+  }
 });
 
 function saveEventKey() {
+  const eventKeyInput = document.getElementById("eventKeyInput");
+  if (!eventKeyInput) return;
+  
   eventKey = eventKeyInput.value.split(",");
   eventKeyRaw = eventKeyInput.value;
   localStorage.setItem("eventKey", JSON.stringify(eventKey));
   localStorage.setItem("pLink", pLink);
   localStorage.setItem("eventKeyRaw", eventKeyRaw);
-  // biome-ignore lint/correctness/noSelfAssign:
   window.location = window.location;
-}
-const dropdown = document.getElementById("dropdown");
-const options = dropdown.getElementsByTagName("option");
-
-const sortedOptions = Array.from(options).sort((a, b) =>
-  a.textContent.localeCompare(b.textContent),
-);
-
-while (dropdown.firstChild) {
-  dropdown.removeChild(dropdown.firstChild);
-}
-
-for (const option of sortedOptions) {
-  dropdown.appendChild(option);
 }
 
 function saveIcon() {
@@ -152,6 +167,7 @@ function CustomName() {
   console.log("saveName function called with name value:", nameValue);
   localStorage.setItem("CustomName", nameValue);
 }
+
 function ResetCustomCloak() {
   localStorage.removeItem("CustomName");
   localStorage.removeItem("CustomIcon");
@@ -180,7 +196,10 @@ document.addEventListener("DOMContentLoaded", event => {
   const icon = document.getElementById("tab-favicon");
   const name = document.getElementById("t");
   const selectedValue = localStorage.getItem("selectedOption") || "Default";
-  document.getElementById("dropdown").value = selectedValue;
+  const dropdownElement = document.getElementById("dropdown");
+  if (dropdownElement) {
+    dropdownElement.value = selectedValue;
+  }
   updateHeadSection(selectedValue);
 });
 
@@ -206,48 +225,55 @@ function updateHeadSection(selectedValue) {
     localStorage.setItem("icon", customIcon);
   }
 }
+
 // Custom Background
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
   const backgroundInput = document.getElementById("background-input");
   const resetButton = document.getElementById("reset-button");
 
-  saveButton.addEventListener("click", () => {
-    const imageURL = backgroundInput.value;
-    if (imageURL.trim() !== "") {
-      localStorage.setItem("backgroundImage", imageURL);
-      document.body.style.backgroundImage = `url('${imageURL}')`;
-      backgroundInput.value = "";
-    } else {
-      console.log("No image URL entered.");
-    }
-  });
+  if (saveButton && backgroundInput && resetButton) {
+    saveButton.addEventListener("click", () => {
+      const imageURL = backgroundInput.value;
+      if (imageURL.trim() !== "") {
+        localStorage.setItem("backgroundImage", imageURL);
+        document.body.style.backgroundImage = `url('${imageURL}')`;
+        backgroundInput.value = "";
+      } else {
+        console.log("No image URL entered.");
+      }
+    });
 
-  resetButton.addEventListener("click", () => {
-    localStorage.removeItem("backgroundImage");
-    document.body.style.backgroundImage = "url('default-background.jpg')";
-    window.location.reload();
-  });
+    resetButton.addEventListener("click", () => {
+      localStorage.removeItem("backgroundImage");
+      document.body.style.backgroundImage = "url('default-background.jpg')";
+      window.location.reload();
+    });
+  }
 });
 
 // Particles
-const switches = document.getElementById("2");
+document.addEventListener("DOMContentLoaded", () => {
+  const switches = document.getElementById("2");
+  if (switches) {
+    if (window.localStorage.getItem("particles") !== "") {
+      if (window.localStorage.getItem("particles") === "true") {
+        switches.checked = true;
+      } else {
+        switches.checked = false;
+      }
+    }
 
-if (window.localStorage.getItem("particles") !== "") {
-  if (window.localStorage.getItem("particles") === "true") {
-    switches.checked = true;
-  } else {
-    switches.checked = false;
-  }
-}
-
-switches.addEventListener("change", event => {
-  if (event.currentTarget.checked) {
-    window.localStorage.setItem("particles", "true");
-  } else {
-    window.localStorage.setItem("particles", "false");
+    switches.addEventListener("change", event => {
+      if (event.currentTarget.checked) {
+        window.localStorage.setItem("particles", "true");
+      } else {
+        window.localStorage.setItem("particles", "false");
+      }
+    });
   }
 });
+
 // AB Cloak
 function AB() {
   let inFrame;
@@ -311,6 +337,7 @@ function toggleAB() {
     localStorage.setItem("ab", "true");
   }
 }
+
 // Search Engine
 function EngineChange(dropdown) {
   const selectedEngine = dropdown.value;
@@ -332,9 +359,9 @@ function EngineChange(dropdown) {
 }
 
 function SaveEngine() {
-  const customEngine = document.getElementById("engine-form").value;
-  if (customEngine.trim() !== "") {
-    localStorage.setItem("engine", customEngine);
+  const customEngine = document.getElementById("engine-form");
+  if (customEngine && customEngine.value.trim() !== "") {
+    localStorage.setItem("engine", customEngine.value);
     localStorage.setItem("enginename", "Custom");
   } else {
     alert("Please enter a custom search engine value.");
@@ -344,7 +371,7 @@ function SaveEngine() {
 document.addEventListener("DOMContentLoaded", () => {
   const selectedEngineName = localStorage.getItem("enginename");
   const dropdown = document.getElementById("engine");
-  if (selectedEngineName) {
+  if (dropdown && selectedEngineName) {
     dropdown.value = selectedEngineName;
   }
 });
@@ -438,4 +465,3 @@ function importSaveData() {
   };
   input.click();
 }
-
