@@ -104,10 +104,11 @@ const routes = [
   { path: "/play.html", file: "games.html" },
   { path: "/settings", file: "settings.html" },
   { path: "/proxy", file: "tabs.html" },
-  { path: "/home", file: "index.html" },
+  { path: "/home", file: "Index.html" },
   { path: "/exthangr", file: "proxy.html" },
   { path: "/contact", file: "contactsupport.html" },
   { path: "/search", file: "search.html" },
+  { path: "/learnmathhere", file: "index.html" },
 ];
 
 // biome-ignore lint/complexity/noForEach:
