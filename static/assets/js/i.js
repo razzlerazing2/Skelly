@@ -7,10 +7,10 @@ window.addEventListener("load", () => {
 let xl;
 
 try {
-  xl = window.top.location.pathname === "/proxy";
+  xl = window.top.location.pathname === "/lightspeedbypasser";
 } catch {
   try {
-    xl = window.parent.location.pathname === "/proxy";   
+    xl = window.parent.location.pathname === "/lightspeedbypasser";   
   } catch {
     xl = false;
   }
@@ -24,9 +24,9 @@ if (form && input) {
     event.preventDefault();
     try {
       if (xl) processUrl(input.value, "");
-      else processUrl(input.value, "/proxy");
+      else processUrl(input.value, "/lightspeedbypasser");
     } catch {
-      processUrl(input.value, "/proxy");
+      processUrl(input.value, "/lightspeedbypasser");
     }
   });
 }
@@ -54,7 +54,7 @@ function processUrl(value, path) {
 }
 
 function go(value) {
-  processUrl(value, "/proxy");
+  processUrl(value, "/lightspeedbypasser");
 }
 
 function blank(value) {

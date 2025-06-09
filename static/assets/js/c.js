@@ -6,10 +6,10 @@ const c = window.location.pathname === "/gawd.html";
 let t;
 
 try {
-  t = window.top.location.pathname === "/proxy";
+  t = window.top.location.pathname === "/lightspeedbypasser";
 } catch {
   try {
-    t = window.parent.location.pathname === "/proxy";   
+    t = window.parent.location.pathname === "/lightspeedbypasser";   
   } catch {
     t = false;
   }
@@ -42,7 +42,7 @@ function handleClick(app) {
 
   if (app.local) {
     saveToLocal(Selected);
-    window.location.href = "/proxy";
+    window.location.href = "/lightspeedbypasser";
     if (t) {
       window.location.href = Selected;
     }
@@ -188,18 +188,7 @@ function CreateCustomApp(customApp) {
   pinIcon.ariaHidden = true;
 
   const btn = document.createElement("button");
-  btn.appendChild(pinIcon);
-  btn.style.float = "right";
-  btn.style.cursor = "pointer";
-  btn.style.backgroundColor = "rgb(45,45,45)";
-  btn.style.borderRadius = "50%";
-  btn.style.borderColor = "transparent";
-  btn.style.color = "white";
-  btn.style.top = "-200px";
-  btn.style.position = "relative";
-  btn.onclick = () => {
-    setPin(appInd);
-  };
+  
   btn.title = "Pin";
 
   const linkElem = document.createElement("a");

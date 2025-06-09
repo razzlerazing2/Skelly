@@ -2,10 +2,10 @@
   let qp;
 
   try {
-    qp = window.top.location.pathname === "/lightspeedbypasser";
+    qp = window.top.location.pathname === "/tabs2.html";
   } catch {
     try {
-      qp = window.parent.location.pathname === "/lightspeedbypasser";   
+      qp = window.parent.location.pathname === "/tabs2.html";   
     } catch {
       qp = false;
     }
