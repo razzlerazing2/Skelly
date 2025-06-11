@@ -166,11 +166,11 @@ border-radius: 5px;
   border: 2px solid white; /* Clean inner white border */
   transition: all 0.3s ease;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: rgba(255, 255, 255, 0.05); /* light transparent background */
-  backdrop-filter: blur(10px); /* adds a glassy blur effect */
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(4px); /* I'm pretty sure adds a thing called "glassy" effect. */
 }
 .container:hover {
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
   border: 2px solid transparent;
     box-shadow: 
     0 0 60px 20px #FF0000,   /* Intense red inner glow */

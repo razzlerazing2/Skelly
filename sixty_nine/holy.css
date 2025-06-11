@@ -58,14 +58,14 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   border: 2px solid white;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px); /* I'm pretty sure adds a thing called "glassy" effect. */
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(4px); /* I'm pretty sure adds a thing called "glassy" effect. */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto;
 }
 
 .container:hover {
-   backdrop-filter: blur(20px);
+   backdrop-filter: blur(5px);
   border: 2px solid transparent;
   box-shadow: 
     0 0 60px 20px #FF0000,
