@@ -51,7 +51,7 @@ body::-webkit-scrollbar {
 
 
 .container {
-  width: 860px;
+  width: 862px;
   padding: 20px;
   border-radius: 20px;
   overflow-y: auto;
@@ -59,19 +59,19 @@ body::-webkit-scrollbar {
   position: relative;
   border: 2px solid white;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px); /* I'm pretty sure adds a thing called "glassy" effect. */
+   backdrop-filter: blur(2.69px);  /* I'm pretty sure adds a thing called "glassy" effect. */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto;
 }
 
-.container:hover {
+/* .container:hover {
    backdrop-filter: blur(20px);
   border: 2px solid transparent;
   box-shadow: 
     0 0 60px 20px #FF0000,
     0 0 80px 30px #0000FF;
   transition: all 0.4s ease;
-}
+} */
 
 /* WebKit Scrollbar Styling */
 .container::-webkit-scrollbar {

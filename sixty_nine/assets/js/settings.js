@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Key
 let eventKey = localStorage.getItem("eventKey") || "`";
 let eventKeyRaw = localStorage.getItem("eventKeyRaw") || "`";
-let pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
+let pLink = localStorage.getItem("pLink") || "HTTPS://";
 
 document.addEventListener("DOMContentLoaded", () => {
   const eventKeyInput = document.getElementById("eventKeyInput");
@@ -138,6 +138,13 @@ function saveEventKey() {
   localStorage.setItem("pLink", pLink);
   localStorage.setItem("eventKeyRaw", eventKeyRaw);
   window.location = window.location;
+}
+
+function resetButton() {
+  localStorage.removeItem("eventKey");
+  localStorage.removeItem("eventKeyRaw");
+  localStorage.removeItem("pLink");
+  window.location.reload();
 }
 
 function saveIcon() {
