@@ -345,7 +345,7 @@ function toggleAB() {
   }
 }
 
-// Search Engine
+// Search Engine dropdown change
 function EngineChange(dropdown) {
   const selectedEngine = dropdown.value;
 
@@ -365,23 +365,28 @@ function EngineChange(dropdown) {
   dropdown.value = selectedEngine;
 }
 
+// Save custom engine input
 function SaveEngine() {
   const customEngine = document.getElementById("engine-form");
+
   if (customEngine && customEngine.value.trim() !== "") {
-    localStorage.setItem("engine", customEngine.value);
+    localStorage.setItem("engine", customEngine.value.trim());
     localStorage.setItem("enginename", "Custom");
   } else {
-    alert("Please enter a custom search engine value.");
+    alert("Search Engine Saved.");
   }
 }
 
+// Load saved engine on page load
 document.addEventListener("DOMContentLoaded", () => {
   const selectedEngineName = localStorage.getItem("enginename");
   const dropdown = document.getElementById("engine");
+
   if (dropdown && selectedEngineName) {
     dropdown.value = selectedEngineName;
   }
 });
+
 
 function getRandomURL() {
   const randomURLS = [
