@@ -124,7 +124,10 @@ transition: all 1s ease;
 }
 
 #loader span {
-  color: red;
+  background: linear-gradient(45deg, #f39c12, #8e44ad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
 }
 
 #loader p {
@@ -158,17 +161,8 @@ transition: all 1s ease;
 }
 /* Highlight styles */
 .highlight {
-  background: linear-gradient(
-    90deg,
-    #ff0000 0%,
-    #ff7f00 16.66%,
-    #ffff00 33.33%,
-    #00ff00 50%,
-    #0000ff 66.66%,
-    #4b0082 83.33%,
-    #8b00ff 100%
-  );
-  color: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+background: linear-gradient(45deg, #f39c12, #8e44ad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
 }
